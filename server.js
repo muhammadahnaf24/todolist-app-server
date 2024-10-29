@@ -6,9 +6,10 @@ const authRoutes = require("./routes/authRoutes");
 require("dotenv").config();
 
 const app = express();
-app.use(cors());
-app.use(express.json());
 
+app.use(express.json());
+const allowedOrigins = ["https://todolist-app-dun-seven.vercel.app/"]; // ganti dengan domain frontend Anda
+app.use(cors({ origin: allowedOrigins, credentials: true }));
 connectDB();
 
 app.use("/auth", authRoutes); // Pastikan semua route auth berada di sini
